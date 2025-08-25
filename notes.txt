@@ -1,0 +1,13 @@
+Roll Runtime Estimator v0.0.1
+
+User input:
+    -Total number of rolls to run 
+    -Sheets per hour
+    -Starting sequence and ending sequence
+
+Formula:
+    Time for all rolls = ((((amount for 1 side across all ready rolls) / sheets per hour) * 60 ) * (roll change constant * number of rolls)) + (total number of gaps across all rolls * gap constant)
+
+    
+    Constant for roll change = 20 minutes
+    Gap constant = 5 minutes

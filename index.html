@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Roll Estimator -JB-</title>
+</head>
+<body>
+    <header>
+        <h1>
+            Runtime Estimator
+        </h1>
+    </header>
+
+    <main>
+        <div class="container">
+            <form id="user-input">
+                <!-- Will convert this to a drop-down selection -->
+                <label for="totalReadyRolls">Total Rolls Ready:</label>
+                <input type="number" name="totalReadyRolls" id="totalReadyRolls">
+                <br>
+                <label for="seqStart">Starting Sequence #:</label>
+                <input type="number" name="seqStart" id="seqStart">
+                <br>
+                <label for="seqEnd">Ending Sequence #:</label>
+                <input type="number" name="seqEnd" id="seqEnd">
+                <br>
+                <label for="prodVelo"># of Sheets / hr:</label>
+                <input type="number" name="prodVelo" id="prodVelo">
+                <br>
+                <!-- Will convert this to a drop-down selection -->
+                <label for="numOfGaps"># of Gaps in ready rolls: </label>
+                <input type="number" name="numOfGaps" id="numOfGaps">
+                <br>
+                <button type="submit">Submit</button>
+                <button type="reset">Clear</button>
+            </form>
+
+            <div class="output">
+                <div id="totalQtyContainer">
+                    <span>Total Quantity: </span>
+                    <div id="quantity"></div>
+                </div>
+
+                <div id="rollChangeTime">
+                    <span>Total Roll Change Time: </span>
+                    <div id="rollChange"></div>
+                </div>
+
+                <div id="rollGapTIme">
+                    <span>Total Time To Run Gaps: </span>
+                    <div id="runGap"></div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer></footer>
+
+    <script src="./actions.js"></script>
+</body>
+</html>

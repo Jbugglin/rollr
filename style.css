@@ -1,0 +1,19 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100dvw;
+    height: auto;
+}
+
+header {
+    border: 1px solid red;
+    text-align: center;
+}
+
+#user-input {
+    border: 1px solid black;
+}
