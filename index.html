@@ -17,27 +17,37 @@
         <div class="container">
             <form id="user-input">
                 <!-- Will convert this to a drop-down selection -->
-                <label for="totalReadyRolls">Total Rolls Ready:</label>
-                <input type="number" name="totalReadyRolls" id="totalReadyRolls">
+                <div class="user-input-field">
+                    <label for="totalReadyRolls">Total Rolls Ready:</label>
+                    <input type="number" name="totalReadyRolls" id="totalReadyRolls">
+                </div>
                 <br>
-                <label for="seqStart">Starting Sequence #:</label>
-                <input type="number" name="seqStart" id="seqStart">
+                <div class="user-input-field">
+                    <label for="seqStart">Starting Sequence #:</label>
+                    <input type="number" name="seqStart" id="seqStart">
+                </div>
                 <br>
-                <label for="seqEnd">Ending Sequence #:</label>
-                <input type="number" name="seqEnd" id="seqEnd">
+                <div class="user-input-field">
+                    <label for="seqEnd">Ending Sequence #:</label>
+                    <input type="number" name="seqEnd" id="seqEnd">
+                </div>
                 <br>
-                <label for="prodVelo"># of Sheets / hr:</label>
-                <input type="number" name="prodVelo" id="prodVelo">
+                <div class="user-input-field">
+                    <label for="prodVelo"># of Sheets / hr:</label>
+                    <input type="number" name="prodVelo" id="prodVelo">
+                </div>
                 <br>
                 <!-- Will convert this to a drop-down selection -->
-                <label for="numOfGaps"># of Gaps in ready rolls: </label>
-                <input type="number" name="numOfGaps" id="numOfGaps">
+                <div class="user-input-field">
+                    <label for="numOfGaps"># of Gaps in ready rolls: </label>
+                    <input type="number" name="numOfGaps" id="numOfGaps">
+                </div>
                 <br>
                 <button type="submit">Submit</button>
                 <button type="reset">Clear</button>
             </form>
 
-            <div class="output">
+            <div id="output">
                 <div id="totalQtyContainer">
                     <span>Total Quantity: </span>
                     <div id="quantity">-------</div>

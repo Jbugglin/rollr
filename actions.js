@@ -11,13 +11,13 @@ estimateForm.addEventListener("submit", (e) => {
     calcTotalQuantity();
     calcRollChangeTime();
     calcGapsInRoll();
-    calcTotalRunTime();
 });
 
 // Calcluate total run time: Add production run time, 
 //  roll change time, and gap run time. 
-function calcTotalRunTime() {
-    console.log("total?")
+function calcTotalRunTime(quantityRunTime) {
+    let runTime = quantityRunTime;
+    console.log(runTime);
 }
 
 
@@ -36,6 +36,7 @@ function calcTotalQuantity(){
 function calcProdRunTime(totalQuantity){
     let quantityRunTime = (totalQuantity / prodVelo.value);
     document.getElementById('qtyRunTime').innerHTML = (Math.round((quantityRunTime + Number.EPSILON) * 100) / 100)+ " Hours";
+    calcTotalRunTime(quantityRunTime);
 }
 
 
