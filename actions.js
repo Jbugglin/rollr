@@ -1,4 +1,4 @@
-//Get values
+//Get value
 let totalReadyRolls = document.getElementById('totalReadyRolls');
 let seqStart = document.getElementById('seqStart');
 let seqEnd = document.getElementById('seqEnd');
