@@ -15,6 +15,7 @@ let prodMinutes = 0;
 let numOfGaps = document.getElementById('numOfGaps');
 let gapHours = 0;
 let gapMinutes = 0;
+let gapTime = 0;
 
 /**
  *  Calculates the total time for gaps in the roll due to print errors. 
@@ -23,7 +24,18 @@ let gapMinutes = 0;
  *              (user input for # of gaps in ready rolls) * 5...in minutes.
  */
 function calcGapRun(){
-    console.log(numOfGaps.value);
+    gapTime = numOfGaps.value * 5; //Calculates 5 min per gap
+    if (gapTime >= 60){
+        gapHours = Math.floor(gapTime / 60);
+        gapMinutes = (gapTime % 60);
+        document.getElementById("gapHours").innerHTML = gapHours;
+        document.getElementById("gapMinutes").innerHTML = gapMinutes;
+    } else {
+        gapHours = 0;
+        gapMinutes = gapTime;
+        document.getElementById("gapHours").innerHTML = gapHours;
+        document.getElementById("gapMinutes").innerHTML = gapMinutes;
+    }
 }
 
 /**
