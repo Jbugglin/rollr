@@ -23,7 +23,6 @@ main {
 }
 
 .container {
-    transform: translateY(-50px);
     padding: 0.5rem;
     display: flex;
     flex-direction: column;
