@@ -10,11 +10,10 @@ body {
 }
 
 body {
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
 header {
-    border: 1px solid red;
     width: 100%;
     height: 69px;
     display: flex;
@@ -33,25 +32,38 @@ main {
 
 .container {
     transform: translateY(-50px);
-    padding: 10px;
+    padding: 0.5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     max-width: 350px;
     border: 2px solid black;
+    box-shadow: 0.75rem 1rem 1rem rgba(0, 0, 0, 0.389);
+    border-radius: 0.25rem;
+    
 }
 
 #user-input {
-    margin: 0.25rem auto;
+    text-align: center;
 }
 
 #output {
-    margin: 0.125rem auto;
+    margin: 0.5rem;
+    border: 1px solid red;
 }
 
 #output span {
     font-weight: 700;
+}
+
+#totalQtyContainer,
+#quantityRunTime,
+#rollChangeTime,
+#rollGapTime,
+#totalRunTime {
+    text-align: center;
+    width: 100%;
 }
 
 .user-input-field {

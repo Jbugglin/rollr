@@ -1,4 +1,4 @@
-//Get value
+//Global variables. 
 let totalRolls = document.getElementById('totalReadyRolls');
 let rollsReady = 0;
 let rollsHours = 0;
@@ -9,6 +9,7 @@ let seqEnd = document.getElementById('seqEnd');
 let totalQty = 0;
 
 let prodVelo = document.getElementById('prodVelo');
+let prodTime = 0;
 let prodHours = 0;
 let prodMinutes = 0;
 
@@ -16,6 +17,35 @@ let numOfGaps = document.getElementById('numOfGaps');
 let gapHours = 0;
 let gapMinutes = 0;
 let gapTime = 0;
+
+let totalTime = 0;
+let totalHours = 0;
+let totalMinutes = 0;
+
+/**
+ *  Calculate total estimated runtime. 
+ *      totalRunTime = production run time + roll change time + gap run time
+ */
+function calcTotalRuntime(){
+    console.log("Gaptime: " +gapTime);
+    console.log("Rolls: " +rollsReady);
+    console.log("Production: " +prodTime * 60); //Convert to minutes
+
+    totalTime = rollsReady + (prodTime * 60) + gapTime;
+    console.log(totalTime); 
+    if (totalTime >= 60){
+        //Hours
+        totalHours = Math.floor(totalTime / 60);
+        document.getElementById("totalHours").innerHTML = totalHours;
+        //Minutes
+        totalMinutes = totalTime % 60;
+        document.getElementById("totalMinutes").innerHTML = totalMinutes.toFixed(0);
+    } else {
+        totalMinutes = totalTime;
+        document.getElementById("totalHours").innerHTML = totalHours;
+        document.getElementById("totalMinutes").innerHTML = totalMinutes.toFixed(0);
+    }
+}
 
 /**
  *  Calculates the total time for gaps in the roll due to print errors. 
@@ -27,7 +57,7 @@ function calcGapRun(){
     gapTime = numOfGaps.value * 5; //Calculates 5 min per gap
     if (gapTime >= 60){
         gapHours = Math.floor(gapTime / 60);
-        gapMinutes = (gapTime % 60);
+        gapMinutes = gapTime % 60;
         document.getElementById("gapHours").innerHTML = gapHours;
         document.getElementById("gapMinutes").innerHTML = gapMinutes;
     } else {
@@ -45,7 +75,7 @@ function calcGapRun(){
  *              Once the total time exceeds 60 minutes, add up to hour.
  */
 function calcRollChange(){
-    rollsReady = Math.round((totalRolls.value * (1/3) * 60)); //Calculates 20 min per roll change.
+    rollsReady = Math.round(totalRolls.value * 20); //Calculates 20 min per roll change.
     if (rollsReady >= 60){
         rollsHours = Math.floor(rollsReady / 60);
         rollsMinutes = (rollsReady % 60);
@@ -66,9 +96,10 @@ function calcRollChange(){
  *          The decimal * 60 -> minutes.
  */
 function calcProdRun(){
-    prodHours = (totalQty / prodVelo.value);
-    prodMinutes = (prodHours % 1) * 60; //Mod 1 will return the decimal
-    document.getElementById("prodHours").innerHTML = Math.floor(prodHours);
+    prodTime = (totalQty / prodVelo.value)
+    prodHours = Math.floor(prodTime);
+    prodMinutes = (prodTime % 1) * 60; //Mod 1 will return the decimal
+    document.getElementById("prodHours").innerHTML = prodHours;
     document.getElementById("prodMinutes").innerHTML = prodMinutes.toFixed(0);
 }
 
@@ -103,4 +134,5 @@ estimateForm.addEventListener("submit", (e) => {
     calcProdRun();
     calcRollChange();
     calcGapRun();
+    calcTotalRuntime();
 });
