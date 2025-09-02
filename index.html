@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="style.css">
     <title>Roll Estimator -JB-</title>
 </head>
@@ -19,22 +19,22 @@
                 <!-- Will convert this to a drop-down selection -->
                 <div class="user-input-field">
                     <label for="totalReadyRolls">Total Rolls Ready:</label>
-                    <input type="number" name="totalReadyRolls" id="totalReadyRolls">
+                    <input type="number" name="totalReadyRolls" id="totalReadyRolls" min="0">
                 </div>
                 <br>
                 <div class="user-input-field">
                     <label for="seqStart">Starting Sequence #:</label>
-                    <input type="number" name="seqStart" id="seqStart">
+                    <input type="number" name="seqStart" id="seqStart" min="0">
                 </div>
                 <br>
                 <div class="user-input-field">
                     <label for="seqEnd">Ending Sequence #:</label>
-                    <input type="number" name="seqEnd" id="seqEnd">
+                    <input type="number" name="seqEnd" id="seqEnd" min="0">
                 </div>
                 <br>
                 <div class="user-input-field">
                     <label for="prodVelo"># of Sheets / hr:</label>
-                    <input type="number" name="prodVelo" id="prodVelo">
+                    <input type="number" name="prodVelo" id="prodVelo" min="0">
                 </div>
                 <br>
                 <!-- Will convert this to a drop-down selection -->
@@ -55,22 +55,38 @@
 
                 <div id="quantityRunTime">
                     <span>Production Run Time: </span>
-                    <div id="qtyRunTime">-------</div>
+                    <div class="runTime">
+                        <div id="prodHours">Hours</div>
+                        <div class="colon">:</div>
+                        <div id="prodMinutes">Minutes</div>
+                    </div>
                 </div>
 
                 <div id="rollChangeTime">
-                    <span>Roll Change Time: </span>
-                    <div id="rollChange">-------</div>
+                    <span>Total Roll Change Time: </span>
+                    <div class="runTime">
+                        <div id="rollChangeHours">Hours</div>
+                        <div class="colon">:</div>
+                        <div id="rollChangeMinutes">Minutes</div>
+                    </div>
                 </div>
 
                 <div id="rollGapTime">
                     <span>Time To Run Gaps: </span>
-                    <div id="runGap">-------</div>
+                    <div class="runTime">
+                        <div id="gapHours">Hours</div>
+                        <div class="colon">:</div>
+                        <div id="gapMinutes">Minutes</div>
+                    </div>
                 </div>
 
                 <div id="totalRunTime">
                     <span>Total Runtime: </span>
-                    <div id="runtime">-------</div>
+                    <div class="runTime">
+                        <div id="totalHours">Hours</div>
+                        <div class="colon">:</div>
+                        <div id="totalMinutes">Minutes</div>
+                    </div>
                 </div>
             </div>
         </div>

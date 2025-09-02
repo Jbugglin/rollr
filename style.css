@@ -60,3 +60,8 @@ main {
     display: flex;
     justify-content: space-between;
 }
+
+.runTime {
+    display: flex;
+    justify-content: space-evenly;
+}

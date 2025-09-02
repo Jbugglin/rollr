@@ -1,59 +1,94 @@
 //Get value
-let totalReadyRolls = document.getElementById('totalReadyRolls');
+let totalRolls = document.getElementById('totalReadyRolls');
+let rollsReady = 0;
+let rollsHours = 0;
+let rollsMinutes = 0;
+
 let seqStart = document.getElementById('seqStart');
 let seqEnd = document.getElementById('seqEnd');
-let prodVelo = document.getElementById('prodVelo');
-let numOfGaps = document.getElementById('numOfGaps');
+let totalQty = 0;
 
+let prodVelo = document.getElementById('prodVelo');
+let prodHours = 0;
+let prodMinutes = 0;
+
+let numOfGaps = document.getElementById('numOfGaps');
+let gapHours = 0;
+let gapMinutes = 0;
+
+/**
+ *  Calculates the total time for gaps in the roll due to print errors. 
+ *      Typically these take about 5-10 minutes to completely run out, but
+ *          for the scope of this project, we'll go with the former of the timings.
+ *              (user input for # of gaps in ready rolls) * 5...in minutes.
+ */
+function calcGapRun(){
+    console.log(numOfGaps.value);
+}
+
+/**
+ *  Calculates the total time for roll changes, this is the total rolls ready field.
+ *      1 roll change equals 20 minutes (may need to adjust based on estimated time).
+ *          (user input for total rolls ready) * 20...in minutes.
+ *              Once the total time exceeds 60 minutes, add up to hour.
+ */
+function calcRollChange(){
+    rollsReady = Math.round((totalRolls.value * (1/3) * 60)); //Calculates 20 min per roll change.
+    if (rollsReady >= 60){
+        rollsHours = Math.floor(rollsReady / 60);
+        rollsMinutes = (rollsReady % 60);
+        document.getElementById("rollChangeHours").innerHTML = rollsHours;
+        document.getElementById("rollChangeMinutes").innerHTML = rollsMinutes;
+    } else {
+        rollsHours = 0;
+        rollsMinutes = rollsReady;
+        document.getElementById("rollChangeHours").innerHTML = rollsHours;
+        document.getElementById("rollChangeMinutes").innerHTML = rollsMinutes;
+    }
+}
+
+/**
+ *  Calculates the production run time and converting to hours : minutes.
+ *      Calculation (in per hour): (total quantity / # of sheets per hour)
+ *          Need to take the whole number -> hours
+ *          The decimal * 60 -> minutes.
+ */
+function calcProdRun(){
+    prodHours = (totalQty / prodVelo.value);
+    prodMinutes = (prodHours % 1) * 60; //Mod 1 will return the decimal
+    document.getElementById("prodHours").innerHTML = Math.floor(prodHours);
+    document.getElementById("prodMinutes").innerHTML = prodMinutes.toFixed(0);
+}
+
+/**
+ *  Calculates the total quantity from the user inputs.
+ *      Also makes sure that the ending sequence is not greater than the starting.
+ *      If submitted without a sequence number, throw an error message.
+ */
+function calcTotalQty() {
+    if (seqStart.value >= 0 && seqEnd.value < seqStart.value){
+        totalQty = seqStart.value - (seqEnd.value - 1);
+        document.getElementById("quantity").innerHTML = totalQty;
+    } else {
+        seqInputError();
+    }
+}
+
+/**
+ *  This will print an error message to the user to prompt them to check their inputs. 
+ */
+function seqInputError(){
+    alert("Check Sequence Inputs");
+}
+
+/**
+ *  Main driver, also handles the submit button clicked. 
+ */
 let estimateForm = document.getElementById('user-input');
 estimateForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    calcTotalQuantity();
-    calcRollChangeTime();
-    calcGapsInRoll();
+    calcTotalQty();
+    calcProdRun();
+    calcRollChange();
+    calcGapRun();
 });
-
-// Calcluate total run time: Add production run time, 
-//  roll change time, and gap run time. 
-function calcTotalRunTime(quantityRunTime) {
-    let runTime = quantityRunTime;
-    console.log(runTime);
-}
-
-
-// Subtract the sequence numbers to obtain total quantity
-function calcTotalQuantity(){
-    if (seqStart.value > 0){
-        let totalQuantity = seqStart.value - (seqEnd.value - 1);
-        document.getElementById('quantity').innerHTML = totalQuantity;
-        calcProdRunTime(totalQuantity);
-    } else {
-        console.log("start sequence !> 0");
-        startSequenceError();
-    }  
-}
-
-function calcProdRunTime(totalQuantity){
-    let quantityRunTime = (totalQuantity / prodVelo.value);
-    document.getElementById('qtyRunTime').innerHTML = (Math.round((quantityRunTime + Number.EPSILON) * 100) / 100)+ " Hours";
-    calcTotalRunTime(quantityRunTime);
-}
-
-
-// Calculate total roll change time (total rolls ready * 20 
-// minutes)
-function calcRollChangeTime(){
-    let totalRollChange = (totalReadyRolls.value * 20); //In Minutes
-    document.getElementById('rollChange').innerHTML = (Math.round((totalRollChange + Number.EPSILON) * 100) / 100)+ " Minutes";
-}
-
-// Calculate total time needed for gaps in roll (total 
-// number of gaps * 5 minutes)
-function calcGapsInRoll(){
-    let totalGapTime = (numOfGaps.value * 5); //In Minutes
-    document.getElementById('runGap').innerHTML = (Math.round((totalGapTime + Number.EPSILON) * 100) / 100)+ " Minutes";
-}
-
-function startSequenceError(){
-    alert("The starting sequence needs to be greater than 0!");
-}
