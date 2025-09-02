@@ -19,7 +19,7 @@ main {
     height: min-content;
     margin: 70px 0px;
     display: flex; 
-    align-content: center;
+    align-items: center;
 }
 
 .container {
