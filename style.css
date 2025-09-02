@@ -17,7 +17,9 @@ body {
 main {
     width: 100%;
     height: min-content;
-    margin: 70px auto 0px;
+    margin: 70px 0px;
+    display: flex; 
+    align-content: center;
 }
 
 .container {
