@@ -22,6 +22,10 @@ let totalTime = 0;
 let totalHours = 0;
 let totalMinutes = 0;
 
+let numberFormatter = new Intl.NumberFormat('en-US', {
+    minimumIntegerDigits: 2, useGrouping: false
+});
+
 /**
  *  Calculate total estimated runtime. 
  *      totalRunTime = production run time + roll change time + gap run time
@@ -36,13 +40,13 @@ function calcTotalRuntime(){
     if (totalTime >= 60){
         //Hours
         totalHours = Math.floor(totalTime / 60);
-        document.getElementById("totalHours").innerHTML = totalHours;
+        document.getElementById("totalHours").innerHTML = numberFormatter.format(totalHours);
         //Minutes
         totalMinutes = totalTime % 60;
-        document.getElementById("totalMinutes").innerHTML = totalMinutes.toFixed(0);
+        document.getElementById("totalMinutes").innerHTML = numberFormatter.format(totalMinutes.toFixed(0));
     } else {
         totalMinutes = totalTime;
-        document.getElementById("totalHours").innerHTML = totalHours;
+        document.getElementById("totalHours").innerHTML = numberFormatter.format(totalHours);
         document.getElementById("totalMinutes").innerHTML = totalMinutes.toFixed(0);
     }
 }
@@ -58,13 +62,13 @@ function calcGapRun(){
     if (gapTime >= 60){
         gapHours = Math.floor(gapTime / 60);
         gapMinutes = gapTime % 60;
-        document.getElementById("gapHours").innerHTML = gapHours;
-        document.getElementById("gapMinutes").innerHTML = gapMinutes;
+        document.getElementById("gapHours").innerHTML = numberFormatter.format(gapHours);
+        document.getElementById("gapMinutes").innerHTML = numberFormatter.format(gapMinutes);
     } else {
         gapHours = 0;
         gapMinutes = gapTime;
-        document.getElementById("gapHours").innerHTML = gapHours;
-        document.getElementById("gapMinutes").innerHTML = gapMinutes;
+        document.getElementById("gapHours").innerHTML = numberFormatter.format(gapHours);
+        document.getElementById("gapMinutes").innerHTML = numberFormatter.format(gapMinutes);
     }
 }
 
@@ -79,13 +83,13 @@ function calcRollChange(){
     if (rollsReady >= 60){
         rollsHours = Math.floor(rollsReady / 60);
         rollsMinutes = (rollsReady % 60);
-        document.getElementById("rollChangeHours").innerHTML = rollsHours;
-        document.getElementById("rollChangeMinutes").innerHTML = rollsMinutes;
+        document.getElementById("rollChangeHours").innerHTML = numberFormatter.format(rollsHours);
+        document.getElementById("rollChangeMinutes").innerHTML = numberFormatter.format(rollsMinutes);
     } else {
         rollsHours = 0;
         rollsMinutes = rollsReady;
-        document.getElementById("rollChangeHours").innerHTML = rollsHours;
-        document.getElementById("rollChangeMinutes").innerHTML = rollsMinutes;
+        document.getElementById("rollChangeHours").innerHTML = numberFormatter.format(rollsHours);
+        document.getElementById("rollChangeMinutes").innerHTML = numberFormatter.format(rollsMinutes);
     }
 }
 
@@ -99,8 +103,8 @@ function calcProdRun(){
     prodTime = (totalQty / prodVelo.value)
     prodHours = Math.floor(prodTime);
     prodMinutes = (prodTime % 1) * 60; //Mod 1 will return the decimal
-    document.getElementById("prodHours").innerHTML = prodHours;
-    document.getElementById("prodMinutes").innerHTML = prodMinutes.toFixed(0);
+    document.getElementById("prodHours").innerHTML = numberFormatter.format(prodHours);
+    document.getElementById("prodMinutes").innerHTML = numberFormatter.format(prodMinutes.toFixed(0));
 }
 
 /**
