@@ -113,7 +113,7 @@ function calcProdRun(){
  *      If submitted without a sequence number, throw an error message.
  */
 function calcTotalQty() {
-    if (seqStart.value >= 0 && seqEnd.value < seqStart.value){
+    if (seqStart.value >= 0 && seqEnd.value > 0){
         totalQty = seqStart.value - (seqEnd.value - 1);
         document.getElementById("quantity").innerHTML = totalQty;
     } else {
